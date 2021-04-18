@@ -12,7 +12,7 @@ module.exports = (webpackConfigEnv, argv) => {
         projectName: 'prj-name',
         webpackConfigEnv,
         argv,
-    });
+    }); 
 
     return merge(defaultConfig, {
         mode: 'production',
@@ -126,7 +126,7 @@ module.exports = (webpackConfigEnv, argv) => {
                     sourceMap: true,
                 }),
             ],
-            nodeEnv: 'production',
+      nodeEnv: 'production',
             sideEffects: true,
             concatenateModules: true,
         },

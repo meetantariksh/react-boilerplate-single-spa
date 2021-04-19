@@ -1,0 +1,11 @@
+{
+    "env": {
+        "node": true,
+        "commonjs": true,
+        "browser": true,
+        "es6": true
+    },
+
+    "extends": ["react-important-stuff", "plugin:prettier/recommended"],
+    "parser": "@babel/eslint-parser"
+}

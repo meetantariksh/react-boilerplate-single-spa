@@ -10,7 +10,13 @@ module.exports = {
     ],
     plugins: [
         'styled-components',
-        '@babel/plugin-proposal-class-properties',
+        [
+            '@babel/plugin-proposal-class-properties',
+            {
+                useESModules: true,
+                regenerator: false,
+            },
+        ],
         '@babel/plugin-syntax-dynamic-import',
     ],
     env: {

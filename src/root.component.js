@@ -56,8 +56,6 @@ export default function Root(props) {
 }
 
 function renderApplication(props, messages) {
-    console.log('Application Loaded with :: ');
-    console.log(props);
     return (
         <Provider store={store}>
             <LanguageProvider messages={messages}>

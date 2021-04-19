@@ -1,9 +1,8 @@
+const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const singleSpaDefaults = require('webpack-config-single-spa-react');
 
 const WebpackPwaManifest = require('webpack-pwa-manifest');
-const { HashedModuleIdsPlugin } = require('webpack');
-const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = (webpackConfigEnv, argv) => {
@@ -12,7 +11,7 @@ module.exports = (webpackConfigEnv, argv) => {
         projectName: 'prj-name',
         webpackConfigEnv,
         argv,
-    }); 
+    });
 
     return merge(defaultConfig, {
         mode: 'production',
@@ -105,35 +104,9 @@ module.exports = (webpackConfigEnv, argv) => {
                 },
             ],
         },
-        optimization: {
-            minimize: true,
-            minimizer: [
-                new TerserPlugin({
-                    terserOptions: {
-                        warnings: false,
-                        compress: {
-                            comparisons: false,
-                        },
-                        parse: {},
-                        mangle: true,
-                        output: {
-                            comments: false,
-                            ascii_only: true,
-                        },
-                    },
-                    parallel: true,
-                    cache: true,
-                    sourceMap: true,
-                }),
-            ],
-      nodeEnv: 'production',
-            sideEffects: true,
-            concatenateModules: true,
-        },
-
         plugins: [
             new webpack.EnvironmentPlugin({
-                NODE_ENV: 'development',
+                NODE_ENV: 'production',
             }),
 
             new CompressionPlugin({
@@ -147,12 +120,6 @@ module.exports = (webpackConfigEnv, argv) => {
                 name: 'React Boilerplate With SPA',
                 short_name: 'React BP SPA',
                 description: 'React Boilerplate with Single SPA integration',
-            }),
-
-            new HashedModuleIdsPlugin({
-                hashFunction: 'sha256',
-                hashDigest: 'hex',
-                hashDigestLength: 20,
             }),
         ],
 

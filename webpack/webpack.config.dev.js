@@ -1,7 +1,6 @@
 const { merge } = require('webpack-merge');
 const webpack = require('webpack');
 const singleSpaDefaults = require('webpack-config-single-spa-react');
-const CircularDependencyPlugin = require('circular-dependency-plugin');
 
 module.exports = (webpackConfigEnv, argv) => {
     const defaultConfig = singleSpaDefaults({
@@ -104,10 +103,6 @@ module.exports = (webpackConfigEnv, argv) => {
         },
         plugins: [
             new webpack.HotModuleReplacementPlugin(), // Tell webpack we want hot reloading
-            // new CircularDependencyPlugin({
-            //     exclude: /a\.js|node_modules/, // exclude node_modules
-            //     failOnError: false, // show a warning when there is a circular dependency
-            // }),
         ],
 
         // Emit a source map for easier debugging

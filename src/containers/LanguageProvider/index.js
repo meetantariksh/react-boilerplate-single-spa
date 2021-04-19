@@ -15,37 +15,31 @@ import { IntlProvider } from 'react-intl';
 import { makeSelectLocale } from './selectors';
 
 export function LanguageProvider(props) {
-  return (
-    <IntlProvider
-      locale={props.locale}
-      key={props.locale}
-      messages={props.messages[props.locale]}
-    >
-      {React.Children.only(props.children)}
-    </IntlProvider>
-  );
+    return (
+        <IntlProvider
+            locale={props.locale}
+            key={props.locale}
+            messages={props.messages[props.locale]}
+        >
+            {React.Children.only(props.children)}
+        </IntlProvider>
+    );
 }
 
 LanguageProvider.propTypes = {
-  locale: PropTypes.string,
-  messages: PropTypes.object,
-  children: PropTypes.element.isRequired,
+    locale: PropTypes.string,
+    messages: PropTypes.object,
+    children: PropTypes.element.isRequired,
 };
 
-const mapStateToProps = createSelector(
-  makeSelectLocale(),
-  locale => ({
+const mapStateToProps = createSelector(makeSelectLocale(), (locale) => ({
     locale,
-  }),
-);
+}));
 
 function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
+    return {
+        dispatch,
+    };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(LanguageProvider);
+export default connect(mapStateToProps, mapDispatchToProps)(LanguageProvider);
